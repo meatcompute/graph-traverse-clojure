@@ -82,13 +82,14 @@
               (into (pop frontier)
                     (remove explored neighbors))))))))
 
-(defn seq-graph
-  "Selects the data types for `search`."
-  [direction graph start]
+(defn traverse
+  "Selects the data types for `search`.
+  Defaults are {:start :1
+                :direction :depth}."
+  [graph {:keys [direction start]}]
   (let [direction (case direction
-                        :depth []
-                        :breadth (clojure.lang.PersistentQueue/EMPTY))]
+                    :depth []
+                    :breadth (clojure.lang.PersistentQueue/EMPTY)
+                    nil [])
+        start (or start :1)]
     (search graph #{start} (conj direction start))))
-
-(def seq-traverse-depth (partial seq-graph :depth))
-(def seq-traverse-breadth (partial seq-graph :breadth))
