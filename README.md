@@ -14,15 +14,15 @@ All the functions are in core. No tests written
 EX.
 ```
 (traverse (get-graph) {:direction :depth
-                             :start :1})
+                       :start :1})
 => (:1 :3 :4 :5 :6 :2 :7 :8 :9 :10 :11 :12 :13)
 
 (traverse (get-graph) {:direction :breadth
-                             :start :1})
+                       :start :1})
 => (:1 :2 :3 :4 :7 :5 :8 :6 :9 :10 :11 :12 :13)
 
 (traverse (get-graph) {:direction :breadth
-                             :start :13})
+                       :start :13})
 => (:13 :4 :2 :3 :5 :7 :1 :6 :8 :9 :10 :11 :12)
 ```
 
