@@ -83,13 +83,16 @@
                     (remove explored neighbors))))))))
 
 (defn traverse
-  "Selects the data types for `search`.
-  Defaults are {:start :1
-                :direction :depth}."
+  "Takes a graph and returns a lazy sequence of the nodes, by
+  the given direction technique and starting node.
+  Defaults are {:direction :breadth
+                :start :1}."
   [graph {:keys [direction start]}]
   (let [direction (case direction
                     :depth []
                     :breadth (clojure.lang.PersistentQueue/EMPTY)
-                    nil [])
+                    nil (clojure.lang.PersistentQueue/EMPTY))
         start (or start :1)]
-    (search graph #{start} (conj direction start))))
+    (search graph
+            #{start}
+            (conj direction start))))
