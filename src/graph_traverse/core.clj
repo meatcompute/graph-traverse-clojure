@@ -76,11 +76,10 @@
      (let [v (peek frontier)
            neighbors (graph v)]
        (cons v
-             (search
-              graph
-              (into explored neighbors)
-              (into (pop frontier)
-                    (remove explored neighbors))))))))
+             (search graph
+                     (into explored neighbors)
+                     (into (pop frontier)
+                           (remove explored neighbors))))))))
 
 (defn traverse
   "Takes a graph and returns a lazy sequence of the nodes, by
